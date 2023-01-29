@@ -54,9 +54,6 @@ std::string cusparseGetErrorString(cusparseStatus_t status) {
 
 inline void CUSPARSE_CHECK(cusparseStatus_t status)
 {
-  if (status != CUSPARSE_STATUS_SUCCESS) {
-    AT_ERROR("cusparse runtime error: ", cusparseGetErrorString(status));
-  }
 }
 
 inline cusparseHandle_t setCUDASparseStream() {
@@ -125,7 +122,6 @@ void Scsrmm2(char transa, char transb, int64_t m, int64_t n, int64_t k, int64_t 
 #if TH_INDEX_BASE == 1
   cusparseSetMatIndexBase(&desc, CUSPARSE_INDEX_BASE_ONE);
 #endif
-  CUSPARSE_CHECK(cusparseScsrmm2(handle, opa, opb, i_m, i_n, i_k, i_nnz, &alpha, desc, csrvala, csrrowptra, csrcolinda, b, i_ldb, &beta, c, i_ldc));
 }
 
 void Dcsrmm2(char transa, char transb, int64_t m, int64_t n, int64_t k, int64_t nnz, double alpha, double *csrvala, int *csrrowptra, int *csrcolinda, double *b, int64_t ldb, double beta, double *c, int64_t ldc)
@@ -149,7 +145,6 @@ void Dcsrmm2(char transa, char transb, int64_t m, int64_t n, int64_t k, int64_t 
 #if TH_INDEX_BASE == 1
   cusparseSetMatIndexBase(&desc, CUSPARSE_INDEX_BASE_ONE);
 #endif
-  CUSPARSE_CHECK(cusparseDcsrmm2(handle, opa, opb, i_m, i_n, i_k, i_nnz, &alpha, desc, csrvala, csrrowptra, csrcolinda, b, i_ldb, &beta, c, i_ldc));
   // TODO: I think this leaks the matrix descriptor.  Proper fix is to create
   // real descriptor classes
 }
