@@ -1,3 +1,24 @@
+Modified Pytorch 0.4.1 sourcecode to build and use with ampere architecture.  
+Tested only on cuda11.0 and RTX A4000.
+
+Usage:
+
+1. set environment variable TORCH_CUDA_ARCH_LIST for your gpu architecture like:  
+export TORCH_CUDA_ARCH_LIST="7.5;8.0+PTX"
+2. edit the head of thirdparty/gloo/cmake/cuda.cmake for your gpu architecture
+3. run "python setup.py install"
+
+In my environment, I had to install following libraries. Please install if necessary.  
+cuda-nvrtc-dev,libcublas,libcublas-dev,libcufft-dev,libcurand-dev,libcusparse,libcusparse-dev
+
+Caution:  
+
+Some functions in the following codes are killed due to deprecated functions of cuda. Thus, relevant fuctions would be unavailable.  
+aten/src/THCUNN/generic/SparseLinear.cu  
+aten/src/ATen/native/sparse/cuda/SparseCUDABlas.cu  
+
+--------------------------------------------------------------------------------
+
 ![PyTorch Logo](https://github.com/pytorch/pytorch/blob/master/docs/source/_static/img/pytorch-logo-dark.png)
 
 --------------------------------------------------------------------------------
