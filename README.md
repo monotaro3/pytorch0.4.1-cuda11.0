@@ -3,10 +3,12 @@ Tested only on cuda11.0 and RTX A4000.
 
 Usage:
 
-1. set environment variable TORCH_CUDA_ARCH_LIST for your gpu architecture like:  
-export TORCH_CUDA_ARCH_LIST="7.5;8.0+PTX"
-2. edit the head of thirdparty/gloo/cmake/cuda.cmake for your gpu architecture
-3. run "python setup.py install"
+1. run "git clone https://github.com/monotaro3/pytorch0.4.1-cuda11.0.git" "cd pytorch0.4.1-cuda11.0" "git submodule update --init --recursive"  
+2. replace "attr.memoryType" by "attr.type" in the line 125 of third_party/gloo/gloo/cuda.h  
+3. edit the head of thirdparty/gloo/cmake/cuda.cmake for your gpu architecture  
+4. set environment variable TORCH_CUDA_ARCH_LIST for your gpu architecture like:    
+export TORCH_CUDA_ARCH_LIST="7.5;8.0+PTX"  
+5. run "python setup.py install"  
 
 In my environment, I had to install following libraries. Please install if necessary.  
 cuda-nvrtc-dev,libcublas,libcublas-dev,libcufft-dev,libcurand-dev,libcusparse,libcusparse-dev
