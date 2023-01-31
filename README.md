@@ -19,6 +19,9 @@ Some functions in the following codes are killed due to deprecated functions of 
 aten/src/THCUNN/generic/SparseLinear.cu  
 aten/src/ATen/native/sparse/cuda/SparseCUDABlas.cu  
 
+For more detail, please see (sorry Japanese only):  
+https://qiita.com/monotaro_ex/items/854ad894fca85b32f38c
+
 --------------------------------------------------------------------------------
 
 ![PyTorch Logo](https://github.com/pytorch/pytorch/blob/master/docs/source/_static/img/pytorch-logo-dark.png)
